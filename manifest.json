@@ -1,10 +1,10 @@
 {
-  "name": "My First PWA",
-  "short_name": "PWA Demo",
+  "name": "Simple To-Do PWA",
+  "short_name": "ToDo",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#317EFB",
+  "theme_color": "#2196f3",
   "icons": [
     {
       "src": "icon-192.png",
