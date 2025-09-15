@@ -1,77 +1,125 @@
+/* ===== Reset / Body ===== */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  background: #f0f2f5;
   margin: 0;
+  padding: 0;
 }
 
+/* ===== Container ===== */
 .container {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 90%;
-  max-width: 400px;
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  color: #2196f3;
-}
-
-.input-area {
-  display: flex;
-  gap: 10px;
+  color: #317EFB;
   margin-bottom: 20px;
 }
 
-#todo-input {
+/* ===== Input Group ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  font-size: 16px; /* ป้องกัน iOS zoom */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
-#add-btn {
-  padding: 10px 20px;
-  background-color: #2196f3;
-  color: white;
+button {
+  padding: 10px 16px;
   border: none;
-  border-radius: 5px;
+  background: #317EFB;
+  color: white;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-#add-btn:hover {
-  background-color: #1976d2;
+button:hover {
+  background: #255db2;
 }
 
-#todo-list {
+/* ===== Task List ===== */
+ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-#todo-list li {
+li {
+  background: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  align-items: center;
+  flex-wrap: wrap; /* ทำให้ row responsive */
 }
 
-#todo-list li.completed {
-  text-decoration: line-through;
-  color: #888;
+/* ===== Left Side: Task + Tag ===== */
+li .left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.todo-btn {
-  background: none;
-  border: none;
+li .left span.task-text {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.tag {
+  font-size: 12px;
+  background: #e6f0ff;
+  color: #317EFB;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* ===== Right Side: Actions ===== */
+.actions button {
+  margin-left: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
   cursor: pointer;
-  color: #2196f3;
 }
 
-.todo-btn:hover {
-  color: #1976d2;
+.actions button:hover {
+  opacity: 0.85;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 400px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    margin-top: 8px;
+  }
 }

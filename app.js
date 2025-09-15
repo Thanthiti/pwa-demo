@@ -1,60 +1,80 @@
-const todoInput = document.getElementById("todo-input");
-const addBtn = document.getElementById("add-btn");
-const todoList = document.getElementById("todo-list");
+const taskInput = document.getElementById("taskInput");
+const tagInput = document.getElementById("tagInput");
+const taskList = document.getElementById("taskList");
 
-// โหลดจาก localStorage
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+// โหลด tasks จาก localStorage
+document.addEventListener("DOMContentLoaded", loadTasks);
 
-// แสดงรายการ
-function renderTodos() {
-  todoList.innerHTML = "";
-  todos.forEach((todo, index) => {
-    const li = document.createElement("li");
-    li.textContent = todo.text;
-    li.className = todo.completed ? "completed" : "";
+function addTask() {
+  const task = taskInput.value.trim();
+  const tag = tagInput.value.trim();
+  if (task === "") return;
 
-    // ทำเครื่องหมายเสร็จ
-    li.addEventListener("click", () => {
-      todos[index].completed = !todos[index].completed;
-      saveAndRender();
-    });
+  createTaskElement(task, tag);
 
-    // ปุ่มลบ
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.className = "todo-btn";
-    deleteBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      todos.splice(index, 1);
-      saveAndRender();
-    });
-
-    li.appendChild(deleteBtn);
-    todoList.appendChild(li);
-  });
+  taskInput.value = "";
+  tagInput.value = "";
+  saveTasks();
 }
 
-// บันทึกและรีเฟรช
-function saveAndRender() {
-  localStorage.setItem("todos", JSON.stringify(todos));
-  renderTodos();
-}
+function createTaskElement(task, tag) {
+  const li = document.createElement("li");
 
-// เพิ่มรายการใหม่
-addBtn.addEventListener("click", () => {
-  const text = todoInput.value.trim();
-  if (text) {
-    todos.push({ text, completed: false });
-    saveAndRender();
-    todoInput.value = "";
+  const leftDiv = document.createElement("div");
+  leftDiv.className = "left";
+
+  const taskText = document.createElement("span");
+  taskText.textContent = task;
+
+  if (tag) {
+    const tagEl = document.createElement("span");
+    tagEl.className = "tag";
+    tagEl.textContent = "#" + tag;
+    leftDiv.appendChild(tagEl);
   }
-});
 
-// Enter key เพิ่มรายการ
-todoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addBtn.click();
-});
+  leftDiv.insertBefore(taskText, leftDiv.firstChild);
 
-// แสดงตอนโหลด
-renderTodos();
-    
+  const actions = document.createElement("div");
+  actions.className = "actions";
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "✏️";
+  editBtn.onclick = () => {
+    const newTask = prompt("Edit task:", taskText.textContent);
+    if (newTask) {
+      taskText.textContent = newTask;
+      saveTasks();
+    }
+  };
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "❌";
+  deleteBtn.onclick = () => {
+    li.remove();
+    saveTasks();
+  };
+
+  actions.appendChild(editBtn);
+  actions.appendChild(deleteBtn);
+
+  li.appendChild(leftDiv);
+  li.appendChild(actions);
+
+  taskList.appendChild(li);
+}
+
+function saveTasks() {
+  const tasks = [];
+  document.querySelectorAll("#taskList li").forEach((li) => {
+    const text = li.querySelector(".left span:first-child").textContent;
+    const tagEl = li.querySelector(".tag");
+    tasks.push({ task: text, tag: tagEl ? tagEl.textContent.slice(1) : "" });
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.forEach((t) => createTaskElement(t.task, t.tag));
+}
