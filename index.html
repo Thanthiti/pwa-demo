@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PWA To-do App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Offline/Online Demo</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  
-<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icon-120.png">
 </head>
 <body>
- <div class="container">
-    <h1>🌟 PWA To-do</h1>
+  <h1>PWA Task Demo</h1>
+  <div>Status: <span id="status">🔴 Offline</span></div>
 
-    <div class="input-group">
-      <input type="text" id="taskInput" placeholder="Add new task">
-      <input type="text" id="tagInput" placeholder="Tag (optional)">
-      <button onclick="addTask()">Add</button>
-    </div>
-
-    <ul id="taskList"></ul>
+  <div class="task-input">
+    <input id="newTask" placeholder="New task" />
+    <button id="add">Add Tasek</button>
+    <button id="sync">Sync Pending</button>
   </div>
 
+  <ul id="tasks"></ul>
+
   <script src="app.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js")
-        .then(() => console.log("Service Worker registered"))
-        .catch(err => console.log("SW registration failed:", err));
-    }
-  </script>
 </body>
 </html>
 

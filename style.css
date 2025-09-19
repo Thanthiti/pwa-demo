@@ -1,125 +1,81 @@
-/* ===== Reset / Body ===== */
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: #f0f2f5;
-  margin: 0;
-  padding: 0;
+body { 
+  font-family: Arial, sans-serif; 
+  padding: 20px; 
+  max-width: 500px; 
+  margin: auto; 
+  background: #f5f5f5; 
 }
 
-/* ===== Container ===== */
-.container {
-  max-width: 500px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+h1 { 
+  text-align: center; 
+  color: #333; 
 }
 
-h1 {
-  text-align: center;
-  color: #317EFB;
-  margin-bottom: 20px;
+#status { 
+  font-weight: bold; 
 }
 
-/* ===== Input Group ===== */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  
-  gap: 8px;
-  margin-bottom: 16px;
+.task-input {
+  margin-top: 15px;
 }
 
-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 16px; /* ป้องกัน iOS zoom */
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-sizing: border-box;
+input { 
+  padding: 10px; 
+  width: 70%; 
+  margin-right: 10px; 
+  border-radius: 5px; 
+  border: 1px solid #ccc; 
 }
 
-button {
-  padding: 10px 16px;
-  border: none;
-  background: #317EFB;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+button { 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer; 
+  margin-right: 5px; 
 }
 
-button:hover {
-  background: #255db2;
+#add { 
+  background-color: #28a745; 
+  color: white; 
 }
 
-/* ===== Task List ===== */
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+#sync { 
+  background-color: #007bff; 
+  color: white; 
 }
 
-li {
-  background: #f9f9f9;
-  margin-bottom: 10px;
-  padding: 12px;
-  border-radius: 8px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* ทำให้ row responsive */
+ul { 
+  list-style: none; 
+  padding: 0; 
+  margin-top: 20px; 
 }
 
-/* ===== Left Side: Task + Tag ===== */
-li .left {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex-wrap: wrap;
+li { 
+  background: white; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+  border-radius: 5px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 }
 
-li .left span.task-text {
-  font-weight: 500;
-  font-size: 16px;
+.synced { 
+  color: green; 
+  font-weight: bold; 
 }
 
-.tag {
-  font-size: 12px;
-  background: #e6f0ff;
-  color: #317EFB;
-  padding: 2px 6px;
-  border-radius: 4px;
-  display: inline-block;
+.pending { 
+  color: orange; 
+  font-weight: bold; 
 }
 
-/* ===== Right Side: Actions ===== */
-.actions button {
-  margin-left: 6px;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.actions button:hover {
-  opacity: 0.85;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 400px) {
-  .input-group {
-    flex-direction: column;
-  }
-
-  li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .actions {
-    margin-top: 8px;
-  }
+.delete-btn { 
+  background-color: #dc3545; 
+  color: white; 
+  border-radius: 5px; 
+  padding: 5px 10px; 
+  cursor: pointer; 
 }
